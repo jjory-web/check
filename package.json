@@ -1,13 +1,13 @@
 {
   "name": "editorial-proofreader",
   "private": true,
-  "version": "0.7.0",
+  "version": "0.9.0-beta.1",
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "node --test tests/engine.test.mjs",
+    "test": "node --test tests/engine.test.mjs tests/lexical-review.test.mjs tests/fallback.test.mjs tests/fallback-window.test.mjs",
     "test:browser": "node --test tests/browser.test.mjs",
     "test:all": "npm test && npm run build && npm run test:browser"
   },

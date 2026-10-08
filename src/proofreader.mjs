@@ -66,6 +66,13 @@ export function createProofreader({lexicon,morphology}){
         if(!entry||!['명사','동사','형용사','부사'].some(p=>entry.pos.has(p)))continue;
         if(entry.word.length<=span[0].text.length&&!['동사','형용사'].some(p=>entry.pos.has(p)))continue;
         const from=text.slice(left.start,last.end);
+        // Joining two independently meaningful predicates is risky even if the
+        // concatenated spelling also occurs in the dictionary. In particular,
+        // never turn a separated lexical verb + auxiliary into a compulsory join.
+        if(original.some(ts=>ts.some(t=>t.pos==='VX')))continue;
+        if(original.length===2 &&
+           original[0].some(t=>/^(VV|VA|EC|EF)$/.test(t.pos)) &&
+           original[1].some(t=>/^(VV|VA|VX|EC|EF)$/.test(t.pos)))continue;
         hits.push(issue('dict_compound',from,surface,left.start,'review',`‘${entry.word}’의 사전 등재·품사와 결합형 분석을 확인했습니다. 해당 단어의 뜻으로 쓰였으면 붙여 쓰세요. 별개의 단어 구성일 가능성은 문맥에서 확인해야 합니다.`,'표준국어대사전 · 한글 맞춤법 제2항'));
       }
     }
@@ -89,6 +96,35 @@ export function createProofreader({lexicon,morphology}){
           }
         }
         if(cuts.size){const to=[...w.text].map((c,k)=>(cuts.has(k)?' ':'')+c).join('');hits.push(issue('morph_spacing',w.text,to,w.start,principle?'principle':'review',[...reasons].join(' '),'Garu 품사 분석 · 한글 맞춤법'));}
+      }
+      // Lexical review for every Hangul eojeol: whole surface and lexical stem
+      // with a real attached particle. Suggestions are always review-only.
+      // Guard well-formed verb conjugations and named entities against noise.
+      if(!registered && w.text.length>=3 && w.text.length<=16){
+        const wordTokens=analyze(w.text);
+        // Analyzer guesses are not proof: a misspelling may be tagged as a verb.
+        // Suppress only if the identified lemma can be verified in the lexicon.
+        const hasVerb=wordTokens.some(t=>/^(VV|VA|VX|VCP|VCN)$/.test(t.pos)) &&
+          !!lexicon.lookupSurface(w.text,wordTokens);
+        const isName=wordTokens.some(t=>t.pos==='NNP');
+        if(!hasVerb&&!isName){
+          const proposals=lexicon.suggestWithParticles(w.text,5);
+          if(proposals.length){
+            const options=proposals.map(p=>p.word);
+            hits.push({...issue('lexical_candidate',w.text,options[0],w.start,'review',
+              `현재 어절에서 사전 기반의 유사 표기 후보를 찾았습니다: ${options.join(', ')}. 원문이 고유 명사·신어·올바른 합성어일 수 있으므로 교정 전에 문맥과 규범을 확인하세요.`,
+              '표준국어대사전 전체 표제어 · 철자 후보 탐색'),priority:3});
+          }
+        }
+      }
+      // Counter splitting is sourced from dictionary POS, not example phrases.
+      if(!registered){
+        const counter=lexicon.findCounterSplit(w.text);
+        if(counter){
+          hits.push({...issue('counter_spacing',w.text,counter.join(' '),w.start,'review',
+            '수량 관형 표현과 의존 명사로 분석 가능한 결합입니다. 단위 명사는 앞말과 띄어 쓰는 것이 원칙입니다(한글 맞춤법 제43항).',
+            '표준국어대사전 품사 · 한글 맞춤법 제43항'),priority:0});
+        }
       }
       // Detached particles: require noun context AND agreement after joining.
       const next=words[i+1];if(!next||!usable(next)||! /^[ \t]+$/.test(text.slice(w.end,next.start)))continue;

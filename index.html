@@ -14,7 +14,7 @@
 const $=id=>document.getElementById(id), esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const STORAGE='editorial-proofreader-rules-v1';
 let engineDiagnostics={},engineResult={text:null,hits:[]};
-window.setEngineDiagnostics=(updates)=>{Object.assign(engineDiagnostics,updates);const status=$('engineStatus');if(status){const g=engineDiagnostics.garu?'Garu 실측 확인':'Garu 미연결';const d=engineDiagnostics.dictionary?'표준국어대사전 '+engineDiagnostics.rows.toLocaleString()+'행 · 검사 대상 표제어 '+engineDiagnostics.count.toLocaleString()+'개':'사전 미연결';status.textContent='분석 엔진: '+g+' · '+d+(engineDiagnostics.error?' · '+engineDiagnostics.error:'');}};
+window.setEngineDiagnostics=(updates)=>{Object.assign(engineDiagnostics,updates);const status=$('engineStatus');if(status){const g=engineDiagnostics.garu?'Garu 실측 확인':'Garu 미연결';const d=engineDiagnostics.dictionary?'표준국어대사전 '+engineDiagnostics.rows.toLocaleString()+'행 · 검사 대상 표제어 '+engineDiagnostics.count.toLocaleString()+'개':'사전 미연결';status.textContent='분석 엔진: '+g+' · '+d+(engineDiagnostics.mode==='dictionary-only'?' · 사전 기반 제한 모드 (형태소·활용형 검사 제외)':'')+(engineDiagnostics.error?' · '+engineDiagnostics.error:'')+(engineDiagnostics.notice?' · '+engineDiagnostics.notice:'');}};
 window.setEngineFindings=(result)=>{if(result.text!==editor.value)return;engineResult=result;if(result.error)window.setEngineDiagnostics({error:result.error});recalc();};
 let custom=[];try{let v=JSON.parse(localStorage.getItem(STORAGE)||'[]');if(Array.isArray(v))custom=v.filter(r=>r&&typeof r.from==='string'&&typeof r.to==='string'&&typeof r.reason==='string'&&r.from.length>0)}catch(e){}
 let editId=null,ignored=new Set();const editor=$('editor');
