@@ -1,0 +1,140 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> editorial-proofreader@0.7.0 test:all
+> npm test && npm run build && npm run test:browser
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> editorial-proofreader@0.7.0 test
+> node --test tests/engine.test.mjs
+
+using deprecated parameters for the initialization function; pass a single object instead
+✔ all 15 XLS sheets and all 436,587 source rows retained (2.176441ms)
+✔ homonyms, POS and irregular inflections are preserved; ^ is not flattened (0.256577ms)
+✔ real Garu WASM POS and Unicode offset smoke check (6.513548ms)
+✔ emoji/CRLF offsets map to original UTF-16 manuscript (0.745143ms)
+✔ detect: 먹어버렸다 (3.958908ms)
+✔ detect: 꺼져간다 (1.150103ms)
+✔ detect: 웃고있다 (0.992596ms)
+✔ detect: 먹지않았다 (0.800056ms)
+✔ detect: 하지마라 (1.007408ms)
+✔ detect: 가는듯하다 (1.396064ms)
+✔ detect: 먹을만하다 (1.098015ms)
+✔ detect: 공부해보았다 (1.099938ms)
+✔ detect: 사과를 먹을수있었다. (2.484886ms)
+✔ detect: 먹 었다 (0.691182ms)
+✔ detect: 먹었 다 (0.534176ms)
+✔ detect: 아름 다웠다 (1.134781ms)
+✔ detect: 어려 워서 (0.929381ms)
+✔ detect: 할때 (0.785364ms)
+✔ detect: 먹을때 (0.313553ms)
+✔ detect: 엉망 진창 (0.795138ms)
+✔ detect: 엉망 진창이었다. (1.098175ms)
+✔ detect: 살펴 보았다 (0.875619ms)
+✔ detect: 살펴 보았겠지만 (1.256634ms)
+✔ detect: 살펴 봤다 (0.690721ms)
+✔ detect: 뛰어 넘었다 (0.865464ms)
+✔ detect: 뛰어 넘었겠지만 (1.224456ms)
+✔ detect: 들여다 보았다 (1.298707ms)
+✔ detect: 돌아 보니 (0.826766ms)
+✔ detect: 사과 나무를 (1.138286ms)
+✔ detect: 손 수건 (0.784262ms)
+✔ detect: 읽어보았다 (0.455136ms)
+✔ detect: 먹어보았다 (0.485992ms)
+✔ detect: 말해줬다 (0.867377ms)
+✔ detect: 먹고싶다 (0.662408ms)
+✔ detect: 할수있다 (0.75651ms)
+✔ detect: 할 수있다 (0.466223ms)
+✔ detect: 표현하는것이 중요하다. (1.832251ms)
+✔ detect: 읽을것을 가져왔다. (1.645621ms)
+✔ detect: 학교 에 갔다 (0.804622ms)
+✔ detect: 학생 뿐이다 (1.201501ms)
+✔ detect: 나 는 학생이다. (1.079628ms)
+✔ detect: 😀
+  살펴 보았다. (0.432411ms)
+✔ detect: “엉망	진창” (0.678784ms)
+✔ protect: 책 한 권 (0.536138ms)
+✔ protect: 책 두 권 (0.286743ms)
+✔ protect: 연필 세 자루 (0.639224ms)
+✔ protect: 사람 다섯 명 (0.682859ms)
+✔ protect: 아는 만큼 보인다. (1.418418ms)
+✔ protect: 도와줬다 (0.337359ms)
+✔ protect: 다 먹었다 (0.360573ms)
+✔ protect: 먹었다 다 (0.529088ms)
+✔ protect: 큰 집 (0.280463ms)
+✔ protect: 한 번 (0.284069ms)
+✔ protect: 우리 집 (0.467084ms)
+✔ protect: 좋은 사람 (0.724442ms)
+✔ protect: 예쁜 꽃 (0.325731ms)
+✔ protect: 작은 집에서 살았다. (1.043123ms)
+✔ protect: 살펴보았다 (0.077406ms)
+✔ protect: 뛰어넘었다 (0.097497ms)
+✔ protect: 들여다보았다 (0.068833ms)
+✔ protect: 먹어 보았다. (0.369437ms)
+✔ protect: 읽어 보았다. (0.327403ms)
+✔ protect: 할 수 있다. (0.407915ms)
+✔ protect: 먹을 만큼 먹었다. (0.65656ms)
+✔ protect: 학생뿐이다. (0.353613ms)
+✔ protect: 학교에 갔다. (0.263026ms)
+✔ protect: 할수록 (0.209636ms)
+✔ protect: 하는데 (0.215936ms)
+✔ protect: 수많은 사람이 왔다. (0.793506ms)
+✔ protect: 엉망
+진창 (0.059339ms)
+✔ protect: 살펴, 보았다 (0.276677ms)
+✔ protect: ABC살펴 보았다 (0.23229ms)
+✔ protect: 살펴 보았다ABC (0.386182ms)
+✔ protect: 엉망진창 (0.047461ms)
+✔ protect: 책을 읽고 있다. (0.664101ms)
+✔ protect: 나는 학생이다. (0.313993ms)
+✔ all repeated occurrences have independent exact spans (0.58357ms)
+✔ applied suggestions do not oscillate (5.899222ms)
+✔ auxiliary output is recommendation, not an assertion that permitted spelling is wrong (0.109475ms)
+✔ dictionary candidate never claims dictionary membership proves an error (0.086891ms)
+✔ long multi-paragraph manuscript keeps every offset (6.947542ms)
+✔ long single paragraph chunk boundaries preserve spans (219.768062ms)
+ℹ tests 82
+ℹ suites 0
+ℹ pass 82
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1310.469622
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> editorial-proofreader@0.7.0 build
+> vite build
+
+vite v7.3.7 building client environment for production...
+transforming...
+✓ 4 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/assets/garu_wasm-CW5uo3-i.js           6.65 kB
+dist/assets/engine-worker-DM8Gbao5.js      10.64 kB
+dist/index.html                            24.89 kB │ gzip:   9.11 kB
+dist/assets/garu_wasm_bg-DZgSArxW.wasm    411.54 kB │ gzip: 178.75 kB
+dist/assets/base-BTTsEQMe.gmdl          1,247.33 kB
+dist/assets/index-BRvgflJF.js               1.84 kB │ gzip:   0.98 kB
+✓ built in 211ms
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> editorial-proofreader@0.7.0 test:browser
+> node --test tests/browser.test.mjs
+
+✔ production /check/ path loads dictionary, worker, WASM and model; red underlines and apply (1510.58632ms)
+✔ rapid edits invalidate old results; position-based ignore is local to occurrence (1420.102913ms)
+✔ only series rules appear and persist; additions affect the unchanged editor (1288.521206ms)
+✔ counts, manuscript target and XLSX export survive engine replacement (1045.919577ms)
+✔ dictionary failure is reported, never shown as a clean manuscript (376.685246ms)
+✔ WASM failure is reported and custom rules still work (1279.354828ms)
+✔ failed worker script remains a failure after further edits (108.996393ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7570.848916

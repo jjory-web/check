@@ -1,0 +1,21 @@
+{
+  "name": "editorial-proofreader",
+  "private": true,
+  "version": "0.7.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node --test tests/engine.test.mjs",
+    "test:browser": "node --test tests/browser.test.mjs",
+    "test:all": "npm test && npm run build && npm run test:browser"
+  },
+  "dependencies": {
+    "garu-ko": "0.9.18"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "vite": "^7.1.0"
+  }
+}
