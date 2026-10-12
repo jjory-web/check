@@ -18,3 +18,8 @@ test('fallback does not pretend to validate predicate compounds',()=>{
 test('falling back never treats an established headword as a spelling error',()=>{
  assert.ok(!checker.check('이것저것.').some(h=>h.from==='이것저것'));
 });
+test('fallback applies dictionary normative data (P0)',()=>{
+  const h=checker.check('몇일이 지났다.');
+  assert.ok(h.some(x=>x.from==='몇일이'&&x.to==='며칠이'&&x.level==='error'));
+  assert.deepEqual(checker.check('대중 앞에서'),[]);
+});

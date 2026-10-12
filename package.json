@@ -7,9 +7,10 @@
     "dev": "vite --host 0.0.0.0",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "node --test tests/engine.test.mjs tests/lexical-review.test.mjs tests/fallback.test.mjs tests/fallback-window.test.mjs",
+    "test": "node --test tests/engine.test.mjs tests/lexical-review.test.mjs tests/lexical-candidates.test.mjs tests/fallback.test.mjs tests/fallback-window.test.mjs tests/evaluation.test.mjs tests/docx-export.test.mjs",
     "test:browser": "node --test tests/browser.test.mjs",
-    "test:all": "npm test && npm run build && npm run test:browser"
+    "test:all": "npm test && npm run build && npm run test:browser",
+    "evaluate": "node scripts/evaluate.mjs tests/fixtures/eval-corpus.json && node scripts/evaluate.mjs tests/fixtures/eval-holdout.json && node scripts/evaluate.mjs tests/fixtures/eval-blind.json"
   },
   "dependencies": {
     "garu-ko": "0.9.18"
